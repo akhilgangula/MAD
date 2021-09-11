@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Registration</string>
+    <string name="name_label">Name:</string>
+    <string name="email_label">Email:</string>
+    <string name="id_label">ID:</string>
+    <string name="dept_label">Dept:</string>
+    <string name="select_btn_text">Select</string>
+    <string name="submit_btn_text">Submit</string>
+    <string name="name_placeholder">Enter Name</string>
+    <string name="email_placeholder">Enter Email</string>
+    <string name="id_placeholder">Enter ID</string>
+    <string name="computer_science_label">Computer Science</string>
+    <string name="software_systems_label">Software Info. Systems</string>
+    <string name="bio_info_label">Bio Informatics</string>
+    <string name="data_science_label">Data Science</string>
+    <string name="cancel_btn_text">Cancel</string>
+</resources>
