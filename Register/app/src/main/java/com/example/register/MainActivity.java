@@ -8,14 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.Serializable;
-
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NAME= "name";
-    public static final String EMAIL = "email";
-    public static final String ID = "id";
-    public static final String DEPARTMENT = "dept";
     public static final String USER_DETAILS = "details";
 
     public static boolean hasUserDetails(Intent intent) {

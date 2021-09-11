@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DemoApp</string>
+    <string name="hello">Enter Email</string>
+</resources>
