@@ -14,4 +14,9 @@
     <string name="bio_info_label">Bio Informatics</string>
     <string name="data_science_label">Data Science</string>
     <string name="cancel_btn_text">Cancel</string>
+
+    <string name="validate_name">Enter valid name</string>
+    <string name="validate_email">Enter valid email</string>
+    <string name="validate_id">Enter valid id</string>
+    <string name="validate_dept">Select a department</string>
 </resources>

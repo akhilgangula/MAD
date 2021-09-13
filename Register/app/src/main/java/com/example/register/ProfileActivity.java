@@ -17,6 +17,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView idField = findViewById(R.id.id_text);
         TextView deptField = findViewById(R.id.dept_text);
         Intent profileIntent = getIntent();
+        getString(R.string.computer_science_label);
         UserDetails userDetails = MainActivity.hasUserDetails(profileIntent) ?
                 (UserDetails) profileIntent.getSerializableExtra(MainActivity.USER_DETAILS) :
                 null;
