@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">InClass04</string>
+    <string name="email_placeholder">Email</string>
+    <string name="password_placeholder">Password</string>
+    <string name="name_placeholder">Name</string>
+    <string name="login_btn">Login</string>
+    <string name="create_new_account_btn">Create New Account</string>
+    <string name="submit_btn">Submit</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="welcome">Welcome !!</string>
+    <string name="logout_btn">Log Out</string>
+    <string name="fragment_tag">fragment_tag</string>
+    <string name="account_fragment">account_fragment</string>
+    <string name="email_validation_error">Enter valid email</string>
+    <string name="password_validation_error">Enter valid password</string>
+    <string name="name_validation_error">Enter Valid Name</string>
+    <string name="creation_success">User created</string>
+    <string name="login_success">Logged In</string>
+    <string name="update_success">User updated</string>
+</resources>
