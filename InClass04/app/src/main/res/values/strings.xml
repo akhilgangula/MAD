@@ -18,4 +18,8 @@
     <string name="creation_success">User created</string>
     <string name="login_success">Logged In</string>
     <string name="update_success">User updated</string>
+    <string name="login">Login</string>
+    <string name="register_account">Register Account</string>
+    <string name="account">Account</string>
+    <string name="update_account">Update Account</string>
 </resources>
