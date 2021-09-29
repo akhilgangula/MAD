@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">InClass06</string>
+    <string name="select_complexity">Select Complexity</string>
+    <string name="average">Average: </string>
+    <string name="generate">Generate</string>
+    <string name="default_seek">0/8</string>
+    <string name="times">8 times</string>
+    <string name="error_message">Complexity cannot be 0</string>
+</resources>

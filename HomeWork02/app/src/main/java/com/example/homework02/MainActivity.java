@@ -1,12 +1,14 @@
 package com.example.homework02;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements UserFragment.IHome, FilterFragment.IFilter, SortFragment.ISort {
+public class MainActivity extends AppCompatActivity implements UserFragment.IHome, IFilterSort {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,41 +16,40 @@ public class MainActivity extends AppCompatActivity implements UserFragment.IHom
         setContentView(R.layout.activity_main);
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.container_view, new UserFragment(this), getString(R.string.fragment_tag))
+                .add(R.id.container_view, new UserFragment(new Config(), this), getString(R.string.user_fragment_tag))
                 .commit();
     }
 
     @Override
-    public void filterUsers(List<DataServices.User> users) {
+    public void filterUsers(Config config) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container_view, FilterFragment.newInstance(users, this), getString(R.string.fragment_tag))
+                .replace(R.id.container_view, FilterFragment.newInstance(config, this), getString(R.string.filter_fragment_tag))
                 .addToBackStack(null)
                 .commit();
     }
 
     @Override
-    public void sortUsers(List<DataServices.User> users) {
+    public void sortUsers(Config config) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container_view, SortFragment.newInstance(users, this), getString(R.string.fragment_tag))
+                .replace(R.id.container_view, SortFragment.newInstance(config, this), getString(R.string.sort_fragment_tag))
                 .addToBackStack(null)
                 .commit();
     }
 
     @Override
-    public void applyFilter(List<DataServices.User> users) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container_view, UserFragment.newInstance(users, this), getString(R.string.fragment_tag))
-                .commit();
-    }
-
-    @Override
-    public void sort(List<DataServices.User> users) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container_view, UserFragment.newInstance(users, this), getString(R.string.fragment_tag))
-                .commit();
+    public void applyConfig(List<DataServices.User> users, Config config) {
+        UserFragment fragment = (UserFragment)getSupportFragmentManager().findFragmentByTag(getString(R.string.user_fragment_tag));
+        if (fragment == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container_view, UserFragment.newInstance(users, config, this), getString(R.string.user_fragment_tag))
+                    .commit();
+            return;
+        }
+        fragment.setConfig(config);
+        fragment.setUsers(users);
+        getSupportFragmentManager().popBackStack();
     }
 }

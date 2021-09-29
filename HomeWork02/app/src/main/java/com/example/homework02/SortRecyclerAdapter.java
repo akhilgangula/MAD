@@ -12,17 +12,17 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class SortRecyclerAdapter extends RecyclerView.Adapter<SortRecyclerAdapter.ViewHolder> {
     List<String> criteria = Arrays.asList("Age", "Name", "State");
-    SortFragment.ISort mListener;
+    IFilterSort mListener;
     List<DataServices.User> users;
-    public SortRecyclerAdapter(List<DataServices.User> users, SortFragment.ISort mListener) {
+    Config config;
+    public SortRecyclerAdapter(List<DataServices.User> users, Config config, IFilterSort mListener) {
         this.mListener = mListener;
         this.users = users;
+        this.config = config;
     }
 
     @NonNull
@@ -35,25 +35,17 @@ public class SortRecyclerAdapter extends RecyclerView.Adapter<SortRecyclerAdapte
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String sort = criteria.get(position);
-        holder.sortCriteria.setText(sort);
-        Comparator comparator = (user, t1) -> {
-            switch (sort) {
-                case "Age":
-                    return ((DataServices.User)user).age - ((DataServices.User)t1).age;
-                case "Name":
-                    return ((DataServices.User)user).name.compareTo(((DataServices.User)t1).name);
-                default:
-                    return  ((DataServices.User)user).state.compareTo(((DataServices.User)t1).state);
-            }
-        };
+        String sortBy = criteria.get(position);
+        holder.sortCriteria.setText(sortBy);
         holder.asc.setOnClickListener(view -> {
-            Collections.sort(users, comparator);
-            mListener.sort(users);
+            config.setSortBy(sortBy).setOrder(true);
+            List<DataServices.User> users = Utils.manipulate(config.getFilterBy(), config.getSortBy(), config.isOrder());
+            mListener.applyConfig(users, config);
         });
         holder.desc.setOnClickListener(view -> {
-            users.sort(comparator.reversed());
-            mListener.sort(users);
+            config.setSortBy(sortBy).setOrder(false);
+            List<DataServices.User> users = Utils.manipulate(config.getFilterBy(), config.getSortBy(), config.isOrder());
+            mListener.applyConfig(users, config);
         });
     }
 
