@@ -7,4 +7,7 @@
     <string name="sort_fragment_tag">sort_fragment_tag</string>
     <string name="filter">Filter</string>
     <string name="sort">Sort</string>
+    <string name="filter_title">Filter By State</string>
+    <string name="user_title">Users</string>
+    <string name="sort_title">Sort</string>
 </resources>

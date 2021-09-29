@@ -60,6 +60,7 @@ public class SortFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sort, container, false);
+        getActivity().setTitle(getString(R.string.sort_title));
         RecyclerView recyclerView = view.findViewById(R.id.sort_recycler_view);
         recyclerView.setHasFixedSize(true);
         List<DataServices.User> list_users = DataServices.getAllUsers();

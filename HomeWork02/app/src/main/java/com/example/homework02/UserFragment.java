@@ -81,6 +81,7 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+        getActivity().setTitle(getString(R.string.user_title));
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(view.getContext());

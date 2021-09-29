@@ -70,6 +70,7 @@ public class FilterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_filter, container, false);
+        getActivity().setTitle(getString(R.string.filter_title));
         List<String> all_states = new ArrayList<>(Collections.singletonList(Utils.ALL_STATES));
         all_states.addAll(DataServices.getAllStates());
         ArrayAdapter arrayAdapter = new ArrayAdapter(view.getContext(),android.R.layout.simple_list_item_1, all_states);
