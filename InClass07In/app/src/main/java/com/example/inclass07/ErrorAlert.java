@@ -12,12 +12,6 @@ public class ErrorAlert {
                 .setPositiveButton("OK", (dialogInterface, i) -> {
                     dialogInterface.dismiss();
                 });
-//                .setNegativeButton("Close", (dialogInterface, i) -> {
-//                    Toast.makeText(context, "Close Called", Toast.LENGTH_SHORT).show();
-//                })
-//                .setNeutralButton("Cancel", (dialogInterface, i) -> {
-//                    Toast.makeText(context, "Cancel Called", Toast.LENGTH_SHORT).show();
-//                });
         builder.create().show();
     }
 }

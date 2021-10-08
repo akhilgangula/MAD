@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SortRecyclerAdapter extends RecyclerView.Adapter<SortRecyclerAdapter.ViewHolder> {
-    List<String> criteria = Arrays.asList("Age", "Name", "State");
+    List<String> criteria = Arrays.asList(Utils.AGE, Utils.NAME, Utils.STATE);
     IFilterSort mListener;
     List<DataServices.User> users;
     Config config;

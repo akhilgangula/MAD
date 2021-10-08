@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">HW03</string>
+    <!-- Labels -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="temp_label">Temperature</string>
+    <string name="temp_max_label">Temperature Max</string>
+    <string name="temp_min_label">Temperature Min</string>
+    <string name="desc_label">Description</string>
+    <string name="humidity_label">Humidity</string>
+    <string name="wind_speed_label">Wind Speed</string>
+    <string name="wind_degree_label">Wind Degree</string>
+    <string name="cloudiness_label">Cloudiness</string>
+
+    <string name="max_label">Max: </string>
+    <string name="min_label">Min: </string>
+    <string name="humidity_forecast_label">Humidity: </string>
+    <!-- Button -->
+    <string name="check_forecast">Check Forecast</string>
+    
+    <string name="Fahrenheit"> F</string>
+    <string name="percent"> %</string>
+    <string name="wind_speed"> miles/hr</string>
+    <string name="wind_degree"> degrees</string>
+
+    <string name="city_title">Cities</string>
+    <string name="curr_weather_title">Current Weather</string>
+    <string name="weather_forecast_title">Weather Forecast</string>
+</resources>

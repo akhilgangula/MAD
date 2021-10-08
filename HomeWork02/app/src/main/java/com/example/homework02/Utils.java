@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 class Utils {
 
     public static final String ALL_STATES = "All States";
+    public static final String AGE = "Age";
+    public static final String NAME = "Name";
+    public static final String STATE = "State";
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<DataServices.User> manipulate(String filterBy, String sortBy, boolean order) {
@@ -23,13 +26,13 @@ class Utils {
         }
         if (sortBy != null) {
             switch (sortBy) {
-                case "Age":
+                case AGE:
                     filteredUsers.sort(order ? new SortByAge() : (new SortByAge()).reversed());
                     break;
-                case "Name":
+                case NAME:
                     filteredUsers.sort(order ? new SortByName() : (new SortByName()).reversed());
                     break;
-                case "State":
+                case STATE:
                     filteredUsers.sort(order ? new SortByState() : (new SortByState()).reversed());
                     break;
                 default:
