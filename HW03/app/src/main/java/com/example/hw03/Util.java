@@ -20,4 +20,7 @@ public class Util {
 
     public static final  String API_KEY = "1b62b2bbd53670c34b4b3812b0e4b08a";
     public static final  String UNIT_VALUE = "imperial";
+
+    public static  final String ERROR_TITLE = "Error";
+    public static  final String OK = "Ok";
 }

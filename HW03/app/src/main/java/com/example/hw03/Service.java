@@ -6,6 +6,8 @@ import android.os.Message;
 
 import androidx.annotation.NonNull;
 
+import com.example.hw03.bean.CurrentWeatherResponse;
+import com.example.hw03.bean.ForecastResponse;
 import com.google.gson.Gson;
 
 import java.io.IOException;

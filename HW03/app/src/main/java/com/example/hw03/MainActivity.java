@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements CitiesFragment.ICity, CurrentFragment.IForeCast {
+public class MainActivity extends AppCompatActivity implements CitiesFragment.ICity, CurrentFragment.ICurrent, ForecastFragment.IForeCast {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,18 @@ public class MainActivity extends AppCompatActivity implements CitiesFragment.IC
     public void checkForeCast(Data.City city) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.containerView, ForecastFragment.newInstance(city), Util.FRAGMENT_TAG)
+                .replace(R.id.containerView, ForecastFragment.newInstance(city, this), Util.FRAGMENT_TAG)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void goToMainPage() {
+        getSupportFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void goToBackToCurrentWeather() {
+        getSupportFragmentManager().popBackStack();
     }
 }

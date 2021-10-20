@@ -1,5 +1,6 @@
 package com.example.hw03;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.hw03.bean.ForeCastEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +34,12 @@ public class ForecastFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ForecastFragment newInstance(Data.City city) {
-        ForecastFragment fragment = new ForecastFragment();
+    public ForecastFragment(IForeCast mListener) {
+        this.mListener = mListener;
+    }
+
+    public static ForecastFragment newInstance(Data.City city, IForeCast mListener) {
+        ForecastFragment fragment = new ForecastFragment(mListener);
         Bundle args = new Bundle();
         args.putSerializable(CITY_KEY, city);
         fragment.setArguments(args);
@@ -58,11 +65,22 @@ public class ForecastFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.Adapter adapter = new CityRecyclerViewAdapter(forecast);
+             view.findViewById(R.id.forecast_layout).setVisibility(View.INVISIBLE);
          Service.getForecastWeather(city, new Handler(message -> {
+             view.findViewById(R.id.forecast_loader).setVisibility(View.VISIBLE);
              if(message.arg1 != 1) {
-                 ErrorAlert.showError(getContext(), Util.FORECAST_WEATHER_FAILED);
+                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                 builder.setTitle(Util.ERROR_TITLE)
+                         .setMessage(Util.FORECAST_WEATHER_FAILED)
+                         .setPositiveButton(Util.OK, (dialogInterface, i) -> {
+                             dialogInterface.dismiss();
+                             mListener.goToBackToCurrentWeather();
+                         });
+                 builder.create().show();
                  return false;
              }
+             view.findViewById(R.id.forecast_layout).setVisibility(View.VISIBLE);
+             view.findViewById(R.id.forecast_loader).setVisibility(View.INVISIBLE);
              List<ForeCastEntry> list_forecast = (List<ForeCastEntry>) message.getData().getSerializable(Util.FORECAST_WEATHER_RESPONSE_KEY);
              forecast.addAll(list_forecast);
              adapter.notifyDataSetChanged();
@@ -71,5 +89,10 @@ public class ForecastFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         ((TextView)view.findViewById(R.id.forecast_city)).setText(city.toString());
         return view;
+    }
+
+    IForeCast mListener;
+    interface IForeCast {
+        public void goToBackToCurrentWeather();
     }
 }

@@ -2,17 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".CurrentFragment" >
+    tools:context=".CurrentFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/curr_weather_layout"
+        android:layout_height="match_parent">
+
+
 
     <TextView
         android:id="@+id/curr_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text=""
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +111,7 @@
         android:id="@+id/curr_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView2" />
 
@@ -111,7 +119,7 @@
         android:id="@+id/curr_temp_max"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="@+id/curr_temp"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
 
@@ -119,7 +127,7 @@
         android:id="@+id/curr_temp_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="@+id/curr_temp_max"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
@@ -127,7 +135,7 @@
         android:id="@+id/curr_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="@+id/curr_temp_min"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
 
@@ -135,7 +143,7 @@
         android:id="@+id/curr_humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="@+id/curr_desc"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
 
@@ -143,7 +151,7 @@
         android:id="@+id/curr_wind_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="@+id/curr_humidity"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
@@ -151,7 +159,7 @@
         android:id="@+id/curr_wind_degree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="@+id/curr_wind_speed"
         app:layout_constraintTop_toTopOf="@+id/textView8" />
 
@@ -159,7 +167,7 @@
         android:id="@+id/curr_cloudiness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="@+id/curr_wind_degree"
         app:layout_constraintTop_toTopOf="@+id/textView9" />
 
@@ -177,7 +185,19 @@
         android:id="@+id/curr_img"
         android:layout_width="44dp"
         android:layout_height="47dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/curr_weather_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

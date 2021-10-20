@@ -1,6 +1,6 @@
 package com.example.hw03;
 
-import android.net.Uri;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -11,9 +11,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.hw03.bean.CurrentWeatherResponse;
 import com.squareup.picasso.Picasso;
-
-import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,11 +34,11 @@ public class CurrentFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public CurrentFragment(IForeCast mListener) {
+    public CurrentFragment(ICurrent mListener) {
         this.mListener = mListener;
     }
 
-    public static CurrentFragment newInstance(Data.City city, IForeCast mListener) {
+    public static CurrentFragment newInstance(Data.City city, ICurrent mListener) {
         CurrentFragment fragment = new CurrentFragment(mListener);
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, city);
@@ -61,11 +60,22 @@ public class CurrentFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_current, container, false);
         getActivity().setTitle(getString(R.string.curr_weather_title));
+        view.findViewById(R.id.curr_weather_layout).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.curr_weather_progress).setVisibility(View.VISIBLE);
         Service.getCurrentWeather(city, new Handler(message -> {
             if(message.arg1 != 1) {
-                ErrorAlert.showError(getContext(), Util.CURR_WEATHER_FAILED);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle(Util.ERROR_TITLE)
+                        .setMessage(Util.CURR_WEATHER_FAILED)
+                        .setPositiveButton(Util.OK, (dialogInterface, i) -> {
+                            dialogInterface.dismiss();
+                            mListener.goToMainPage();
+                        });
+                builder.create().show();
                 return false;
             }
+            view.findViewById(R.id.curr_weather_layout).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.curr_weather_progress).setVisibility(View.INVISIBLE);
             CurrentWeatherResponse currentWeatherResponse = (CurrentWeatherResponse) message
                     .getData()
                     .getSerializable(Util.CURR_WEATHER_RESPONSE_KEY);
@@ -86,8 +96,9 @@ public class CurrentFragment extends Fragment {
         }));
         return view;
     }
-IForeCast mListener;
-    interface IForeCast {
+ICurrent mListener;
+    interface ICurrent {
         void checkForeCast(Data.City city);
+        void goToMainPage();
     }
 }
