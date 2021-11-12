@@ -6,5 +6,5 @@ import java.util.Map;
 public interface IStoreAction {
     void onLoadUsers(Map<String, String> userIdToName) throws IllegalAccessException;
     void onLoadForum(List<Forum> forums) throws IllegalAccessException;
-    void onLoadComment(List<Comment> comments);
+    void onLoadComment(List<Comment> comments) throws IllegalAccessException;
 }

@@ -29,9 +29,17 @@
     <string name="error_user_login">Failed to update UI</string>
     <string name="error_title">You must enter a title</string>
     <string name="error_desc">You must enter a description</string>
+    <string name="error_comment">You must enter a comment to post</string>
     <string name="delete_success">Delete Forum</string>
     <string name="delete_failed">Delete failed</string>
     <string name="error_login">Error while login</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="like_feedback">You liked this forum!</string>
+    <string name="like_remove_feedback">Reaction is updated</string>
+    <string name="like_feedback_fail">Something went wrong</string>
+    <string name="new_forum_success">Forum created!</string>
+    <string name="new_forum_fail">Something went wrong!</string>
+    <string name="login_success">Logged In</string>
+    <string name="login_fail">Something went wrong</string>
 </resources>

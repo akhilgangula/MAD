@@ -1,5 +1,6 @@
 package com.example.hw05;
 
+import android.app.AlertDialog;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -29,6 +30,11 @@ public class ForumFragment extends Fragment implements CommentCardAdapter.IComme
     private List<Comment> comments;
 
     private Forum forum;
+
+    public void setForum(Forum forum) {
+        this.forum = forum;
+    }
+
     private Map<String, String> userIdToNameMap;
     private CommentCardAdapter adapter;
     public ForumFragment() {
@@ -53,6 +59,8 @@ public class ForumFragment extends Fragment implements CommentCardAdapter.IComme
         }
     }
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,7 +75,16 @@ public class ForumFragment extends Fragment implements CommentCardAdapter.IComme
         view.findViewById(R.id.forum_forum_comment_btn).setOnClickListener(view1 -> {
             EditText commentBox = (EditText)view.findViewById(R.id.forum_forum_comment_textfield);
             String comment = commentBox.getText().toString();
-
+            if(comment.isEmpty()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle(getString(R.string.error))
+                        .setMessage(getString(R.string.error_comment))
+                        .setPositiveButton(getString(R.string.ok),(dialogInterface,i)->{
+                            dialogInterface.dismiss();
+                        });
+                builder.create().show();
+                return;
+            }
             FireStoreConnector.getInstance().addComment(forum.id, new Comment(FirebaseAuth.getInstance().getUid(), comment))
                     .addOnSuccessListener(o -> commentBox.setText(""))
                     .addOnFailureListener(e -> Log.w(this.getClass().getSimpleName(), "Add comment failed", e));

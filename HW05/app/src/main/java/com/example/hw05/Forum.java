@@ -26,6 +26,7 @@ public class Forum implements Serializable {
     }
 
     public Forum(String uuid, String title, String desc) {
+        this.likeMap = new HashMap<>();
         this.uuid = uuid;
         this.title = title;
         this.desc = desc;

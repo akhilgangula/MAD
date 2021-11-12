@@ -92,6 +92,7 @@ public class FireStoreConnector {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void getComment(String documentId, IStoreAction storeAction) {
+        mapIdToComment.clear();
         db.collection(Constants.FORUM_COLLECTION).document(documentId).collection(Constants.COMMENTS)
                 .addSnapshotListener((snapshots, e) -> {
                     if (e != null) {
@@ -113,7 +114,11 @@ public class FireStoreConnector {
                                 throw new IllegalStateException("Unexpected value: " + dc.getType());
                         }
                     }
-                    storeAction.onLoadComment(mapIdToComment.entrySet().stream().map(entry -> entry.getValue()).collect(Collectors.toList()));
+                    try {
+                        storeAction.onLoadComment(mapIdToComment.entrySet().stream().map(entry -> entry.getValue()).collect(Collectors.toList()));
+                    } catch (IllegalAccessException illegalAccessException) {
+                        illegalAccessException.printStackTrace();
+                    }
                 });
     }
 

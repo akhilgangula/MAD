@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -59,7 +60,7 @@ public class RegisterFragment extends Fragment {
                                         FireStoreConnector
                                                 .getInstance()
                                                 .addUser(user.getUid(), user.getDisplayName())
-                                                .addOnSuccessListener(documentReference -> Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId()))
+                                                .addOnSuccessListener(documentReference -> Toast.makeText(getContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show())
                                                 .addOnFailureListener(e -> Log.w("TAG", "Error adding document", e));
                                         mListener.onAccountCreation(user.getUid());
                                     } else {

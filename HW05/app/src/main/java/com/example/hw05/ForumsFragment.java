@@ -87,9 +87,9 @@ public class ForumsFragment extends Fragment implements ForumCardAdapter.IForumC
     @Override
     public void forumLiked(String documentId, String userId, boolean like) {
         FireStoreConnector.getInstance().likeForum(documentId, userId, like)
-                .addOnSuccessListener(o -> Toast.makeText(getContext(), "You liked this forum!", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(o -> Toast.makeText(getContext(), getString(like ? R.string.like_feedback : R.string.like_remove_feedback), Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.like_feedback_fail), Toast.LENGTH_SHORT).show();
                     Log.e(getClass().getSimpleName(), "forumLiked: failed", e);
                 });
     }
@@ -109,8 +109,8 @@ public class ForumsFragment extends Fragment implements ForumCardAdapter.IForumC
     }
 
     @Override
-    public void onLoadComment(List<Comment> comments) {
-        throw new RuntimeException("Comments not needed in this fragment");
+    public void onLoadComment(List<Comment> comments) throws IllegalAccessException {
+        throw new IllegalAccessException("Comments not needed in this fragment");
     }
 
     interface IForum {
