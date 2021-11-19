@@ -6,10 +6,10 @@ import androidx.room.Room;
 
 public class DBAdapter {
     private static CourseDatabase instance;
-
+    private static final String DB_NAME = "course-app";
     public void setInstance(Context context) {
         instance = Room.databaseBuilder(context,
-                CourseDatabase.class, "database-name").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+                CourseDatabase.class, DB_NAME).allowMainThreadQueries().fallbackToDestructiveMigration().build();
     }
 
     public static CourseDatabase getInstance() {

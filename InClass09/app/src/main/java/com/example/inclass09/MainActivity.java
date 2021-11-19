@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity implements GradesFragment.IGradesAction, CourseFragment.IAddCourse {
 
+    private static final String FRAGMENT_TAG = "fragment_tag";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements GradesFragment.IG
         new DBAdapter().setInstance(getBaseContext());
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.containerView, GradesFragment.newInstance(this), "fragment_tag")
+                .add(R.id.containerView, GradesFragment.newInstance(this), FRAGMENT_TAG)
                 .addToBackStack(null)
                 .commit();
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements GradesFragment.IG
     public void onAddCourseClick() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.containerView, CourseFragment.newInstance(this), "fragment_tag")
+                .replace(R.id.containerView, CourseFragment.newInstance(this), FRAGMENT_TAG)
                 .commit();
     }
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements GradesFragment.IG
     public void onCourseAdd() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.containerView, GradesFragment.newInstance(this), "fragment_tag")
+                .replace(R.id.containerView, GradesFragment.newInstance(this), FRAGMENT_TAG)
                 .commit();
     }
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements GradesFragment.IG
     public void onCancelAdd() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.containerView, GradesFragment.newInstance(this), "fragment_tag")
+                .replace(R.id.containerView, GradesFragment.newInstance(this), FRAGMENT_TAG)
                 .commit();
     }
 }

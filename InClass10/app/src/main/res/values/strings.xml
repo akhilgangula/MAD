@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">InClass10</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="file_name">trip.json</string>
+    <string name="start_location">Start Location</string>
+    <string name="end_location">End Location</string>
+</resources>
